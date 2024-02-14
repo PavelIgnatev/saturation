@@ -148,7 +148,7 @@ async def main(data, proxy, change_url):
                     session, usernames_batch, data, accounts, error_counts, proxy
                 )   
 
-        current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+        current_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         file_path = os.path.join(STORE_PATH, f"data_{current_date}.json")
         with open(file_path, "w", encoding="utf-8") as file:
             json.dump(data, file, indent=2, ensure_ascii=False)
@@ -201,10 +201,6 @@ async def saturation(request):
     else:
         return web.Response(text="Невалидные параметры для старта задачи. Обязательные поля для form-data: file, proxy, change_url")
 
-
-async def handle_server_error(request, exception):
-    logger.exception("Ошибка сервера")
-    return web.json_response({"error": "Внутренняя ошибка сервера"}, status=500)
 
 app = web.Application()
 aiohttp_jinja2.setup(

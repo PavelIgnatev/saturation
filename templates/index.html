@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>File Store</title>
+  </head>
+  <body>
+    <h2>File Store</h2>
+    <ul>
+      {% for file in files %}
+      <li><a href="/download/{{ file }}">{{ file }}</a></li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
